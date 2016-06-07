@@ -1,6 +1,6 @@
 //
-//  MMNumberKeyboard.h
-//  MMNumberKeyboard
+//  MMPhoneNumberKeyboard.h
+//  MMPhoneNumberKeyboard
 //
 //  Created by Matías Martínez on 12/10/15.
 //  Copyright © 2015 Matías Martínez. All rights reserved.
@@ -8,12 +8,12 @@
 
 #import <UIKit/UIKit.h>
 
-@class MMNumberKeyboard;
+@class MMPhoneNumberKeyboard;
 
 /**
  *  The @c MMNumberKeyboardDelegate protocol defines the messages sent to a delegate object as part of the sequence of editing text. All of the methods of this protocol are optional.
  */
-@protocol MMNumberKeyboardDelegate <NSObject>
+@protocol MMPhoneNumberKeyboardDelegate <NSObject>
 @optional
 
 /**
@@ -24,7 +24,7 @@
  *
  *  @return Returns	@c YES if the text should be inserted or @c NO if it should not.
  */
-- (BOOL)numberKeyboard:(MMNumberKeyboard *)numberKeyboard shouldInsertText:(NSString *)text;
+- (BOOL)numberKeyboard:(MMPhoneNumberKeyboard *)numberKeyboard shouldInsertText:(NSString *)text;
 
 /**
  *  Asks the delegate if the keyboard should process the pressing of the return button.
@@ -33,7 +33,7 @@
  *
  *  @return Returns	@c YES if the keyboard should implement its default behavior for the return button; otherwise, @c NO.
  */
-- (BOOL)numberKeyboardShouldReturn:(MMNumberKeyboard *)numberKeyboard;
+- (BOOL)numberKeyboardShouldReturn:(MMPhoneNumberKeyboard *)numberKeyboard;
 
 /**
  *  Asks the delegate if the keyboard should remove the character just before the cursor.
@@ -42,14 +42,14 @@
  *
  *  @return Returns	@c YES if the keyboard should implement its default behavior for the delete backward button; otherwise, @c NO.
  */
-- (BOOL)numberKeyboardShouldDeleteBackward:(MMNumberKeyboard *)numberKeyboard;
+- (BOOL)numberKeyboardShouldDeleteBackward:(MMPhoneNumberKeyboard *)numberKeyboard;
 
 @end
 
 /**
  *  Specifies the style of a keyboard button.
  */
-typedef NS_ENUM(NSUInteger, MMNumberKeyboardButtonStyle) {
+typedef NS_ENUM(NSUInteger, MMPhoneNumberKeyboardButtonStyle) {
     /**
      *  A white style button, such as those for the number keys.
      */
@@ -69,7 +69,7 @@ typedef NS_ENUM(NSUInteger, MMNumberKeyboardButtonStyle) {
 /**
  *  A simple keyboard to use with numbers and, optionally, a decimal point.
  */
-@interface MMNumberKeyboard : UIInputView
+@interface MMPhoneNumberKeyboard : UIInputView
 
 /**
  *  Initializes and returns a number keyboard view using the specified style information and locale.
@@ -92,7 +92,7 @@ typedef NS_ENUM(NSUInteger, MMNumberKeyboardButtonStyle) {
 /**
  *  Delegate to change text insertion or return key behavior.
  */
-@property (weak, nonatomic) id <MMNumberKeyboardDelegate> delegate;
+@property (weak, nonatomic) id <MMPhoneNumberKeyboardDelegate> delegate;
 
 /**
  *  Configures the special key with an image and an action block.
@@ -112,13 +112,6 @@ typedef NS_ENUM(NSUInteger, MMNumberKeyboardButtonStyle) {
 - (void)configureSpecialKeyWithImage:(UIImage *)image target:(id)target action:(SEL)action;
 
 /**
- *  If @c YES, the decimal separator key will be displayed.
- *
- *  @note The default value of this property is @c NO.
- */
-@property (assign, nonatomic) BOOL allowsDecimalPoint;
-
-/**
  *  The visible title of the Return key.
  *
  *  @note The default visible title of the Return key is “Done”.
@@ -130,6 +123,6 @@ typedef NS_ENUM(NSUInteger, MMNumberKeyboardButtonStyle) {
  *
  *  @note The default value of this property is @c MMNumberKeyboardButtonStyleDone.
  */
-@property (assign, nonatomic) MMNumberKeyboardButtonStyle returnKeyButtonStyle;
+@property (assign, nonatomic) MMPhoneNumberKeyboardButtonStyle returnKeyButtonStyle;
 
 @end

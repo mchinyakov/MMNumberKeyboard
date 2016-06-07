@@ -11,7 +11,7 @@
 		09019C931C1A1C33004D0A5D /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 09019C921C1A1C33004D0A5D /* AppDelegate.m */; };
 		09019C961C1A1C33004D0A5D /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 09019C951C1A1C33004D0A5D /* ViewController.m */; };
 		09019C9E1C1A1C33004D0A5D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 09019C9C1C1A1C33004D0A5D /* LaunchScreen.storyboard */; };
-		09019CC01C1A281D004D0A5D /* MMNumberKeyboard.m in Sources */ = {isa = PBXBuildFile; fileRef = 09019CBF1C1A281D004D0A5D /* MMNumberKeyboard.m */; };
+		09019CC01C1A281D004D0A5D /* MMPhoneNumberKeyboard.m in Sources */ = {isa = PBXBuildFile; fileRef = 09019CBF1C1A281D004D0A5D /* MMPhoneNumberKeyboard.m */; };
 		09019CC81C1A2831004D0A5D /* MMNumberKeyboardDeleteKey.png in Resources */ = {isa = PBXBuildFile; fileRef = 09019CC21C1A2831004D0A5D /* MMNumberKeyboardDeleteKey.png */; };
 		09019CC91C1A2831004D0A5D /* MMNumberKeyboardDeleteKey@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 09019CC31C1A2831004D0A5D /* MMNumberKeyboardDeleteKey@2x.png */; };
 		09019CCA1C1A2831004D0A5D /* MMNumberKeyboardDeleteKey@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 09019CC41C1A2831004D0A5D /* MMNumberKeyboardDeleteKey@3x.png */; };
@@ -29,8 +29,8 @@
 		09019C951C1A1C33004D0A5D /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		09019C9D1C1A1C33004D0A5D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		09019C9F1C1A1C33004D0A5D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		09019CBE1C1A281D004D0A5D /* MMNumberKeyboard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMNumberKeyboard.h; sourceTree = "<group>"; };
-		09019CBF1C1A281D004D0A5D /* MMNumberKeyboard.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMNumberKeyboard.m; sourceTree = "<group>"; };
+		09019CBE1C1A281D004D0A5D /* MMPhoneNumberKeyboard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMPhoneNumberKeyboard.h; sourceTree = "<group>"; };
+		09019CBF1C1A281D004D0A5D /* MMPhoneNumberKeyboard.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMPhoneNumberKeyboard.m; sourceTree = "<group>"; };
 		09019CC21C1A2831004D0A5D /* MMNumberKeyboardDeleteKey.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = MMNumberKeyboardDeleteKey.png; sourceTree = "<group>"; };
 		09019CC31C1A2831004D0A5D /* MMNumberKeyboardDeleteKey@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "MMNumberKeyboardDeleteKey@2x.png"; sourceTree = "<group>"; };
 		09019CC41C1A2831004D0A5D /* MMNumberKeyboardDeleteKey@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "MMNumberKeyboardDeleteKey@3x.png"; sourceTree = "<group>"; };
@@ -93,8 +93,8 @@
 		09019CBD1C1A2812004D0A5D /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				09019CBE1C1A281D004D0A5D /* MMNumberKeyboard.h */,
-				09019CBF1C1A281D004D0A5D /* MMNumberKeyboard.m */,
+				09019CBE1C1A281D004D0A5D /* MMPhoneNumberKeyboard.h */,
+				09019CBF1C1A281D004D0A5D /* MMPhoneNumberKeyboard.m */,
 			);
 			path = Classes;
 			sourceTree = SOURCE_ROOT;
@@ -187,7 +187,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				09019C961C1A1C33004D0A5D /* ViewController.m in Sources */,
-				09019CC01C1A281D004D0A5D /* MMNumberKeyboard.m in Sources */,
+				09019CC01C1A281D004D0A5D /* MMPhoneNumberKeyboard.m in Sources */,
 				09019C931C1A1C33004D0A5D /* AppDelegate.m in Sources */,
 				09019C901C1A1C33004D0A5D /* main.m in Sources */,
 			);

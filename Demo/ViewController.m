@@ -1,15 +1,15 @@
 //
 //  ViewController.m
-//  MMNumberKeyboard
+//  MMPhoneNumberKeyboard
 //
 //  Created by Matías Martínez on 12/10/15.
 //  Copyright © 2015 Matías Martínez. All rights reserved.
 //
 
 #import "ViewController.h"
-#import "MMNumberKeyboard.h"
+#import "MMPhoneNumberKeyboard.h"
 
-@interface ViewController () <MMNumberKeyboardDelegate>
+@interface ViewController () <MMPhoneNumberKeyboardDelegate>
 
 @property (strong, nonatomic) UITextField *textField;
 
@@ -24,8 +24,7 @@
     self.view.backgroundColor = [UIColor whiteColor];
     
     // Create and configure the keyboard.
-    MMNumberKeyboard *keyboard = [[MMNumberKeyboard alloc] initWithFrame:CGRectZero];
-    keyboard.allowsDecimalPoint = YES;
+    MMPhoneNumberKeyboard *keyboard = [[MMPhoneNumberKeyboard alloc] initWithFrame:CGRectZero];
     keyboard.delegate = self;
     
     // Configure an example UITextField.
@@ -43,7 +42,7 @@
 
 #pragma mark - MMNumberKeyboardDelegate.
 
-- (BOOL)numberKeyboardShouldReturn:(MMNumberKeyboard *)numberKeyboard
+- (BOOL)numberKeyboardShouldReturn:(MMPhoneNumberKeyboard *)numberKeyboard
 {
     // Do something with the done key if neeed. Return YES to dismiss the keyboard.
     return YES;

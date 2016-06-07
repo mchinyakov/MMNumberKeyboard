@@ -1,6 +1,6 @@
 //
 //  main.m
-//  MMNumberKeyboard
+//  MMPhoneNumberKeyboard
 //
 //  Created by Matías Martínez on 12/10/15.
 //  Copyright © 2015 Matías Martínez. All rights reserved.
