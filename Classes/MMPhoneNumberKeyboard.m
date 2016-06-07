@@ -656,14 +656,14 @@ NS_INLINE CGRect MMButtonRectMake(CGRect rect, CGRect contentRect, UIUserInterfa
             if (idx < totalRows)
             {
                 rect.origin.y = idx * rowHeight;
-                if (idx % 2)
-                {
+//                if (idx % 2)
+//                {
                     rect.size.width = CGRectGetWidth(contentRect) - columnWidth;
-                }
-                else
-                {
-                    rect.size.width = CGRectGetWidth(contentRect);
-                }
+//                }
+//                else
+//                {
+//                    rect.size.width = CGRectGetWidth(contentRect);
+//                }
                 rect.size.height = separatorDimension;
             }
             else
