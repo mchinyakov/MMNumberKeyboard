@@ -10,14 +10,14 @@
 
 typedef NS_ENUM(NSUInteger, MMPhoneNumberKeyboardButton)
 {
-    MMNumberKeyboardButtonNumberMin,
-    MMNumberKeyboardButtonNumberMax = MMNumberKeyboardButtonNumberMin + 10, // Ten digits.
-    MMNumberKeyboardButtonBackspace,
-    MMNumberKeyboardButtonDone,
-    MMNumberKeyboardButtonSpecial,
-    MMNumberKeyboardButtonPlus,
-    MMNumberKeyboardButtonSpace,
-    MMNumberKeyboardButtonNone = NSNotFound,
+    MMPhoneNumberKeyboardButtonNumberMin,
+    MMPhoneNumberKeyboardButtonNumberMax = MMPhoneNumberKeyboardButtonNumberMin + 10, // Ten digits.
+    MMPhoneNumberKeyboardButtonBackspace,
+    MMPhoneNumberKeyboardButtonDone,
+    MMPhoneNumberKeyboardButtonSpecial,
+    MMPhoneNumberKeyboardButtonPlus,
+    MMPhoneNumberKeyboardButtonSpace,
+    MMPhoneNumberKeyboardButtonNone = NSNotFound,
 };
 
 @interface MMPhoneNumberKeyboard () <UIInputViewAudioFeedback>
@@ -30,9 +30,9 @@ typedef NS_ENUM(NSUInteger, MMPhoneNumberKeyboardButton)
 
 @end
 
-@interface _MMNumberKeyboardButton : UIButton
+@interface _MMPhoneNumberKeyboardButton : UIButton
 
-+ (_MMNumberKeyboardButton *)keyboardButtonWithStyle:(MMPhoneNumberKeyboardButtonStyle)style;
++ (_MMPhoneNumberKeyboardButton *)keyboardButtonWithStyle:(MMPhoneNumberKeyboardButtonStyle)style;
 
 // The style of the keyboard button.
 @property(assign, nonatomic) MMPhoneNumberKeyboardButtonStyle style;
@@ -67,10 +67,10 @@ static __weak id currentFirstResponder;
 
 @implementation MMPhoneNumberKeyboard
 
-static const NSInteger MMNumberKeyboardRows = 4;
-static const CGFloat MMNumberKeyboardRowHeight = 55.0f;
-static const CGFloat MMNumberKeyboardPadBorder = 7.0f;
-static const CGFloat MMNumberKeyboardPadSpacing = 8.0f;
+static const NSInteger MMPhoneNumberKeyboardRows = 4;
+static const CGFloat MMPhoneNumberKeyboardRowHeight = 55.0f;
+static const CGFloat MMPhoneNumberKeyboardPadBorder = 7.0f;
+static const CGFloat MMPhoneNumberKeyboardPadSpacing = 8.0f;
 
 #define UIKitLocalizedString(key) [[NSBundle bundleWithIdentifier:@"com.apple.UIKit"] localizedStringForKey:key value:@"" table:nil]
 
@@ -109,8 +109,8 @@ static const CGFloat MMNumberKeyboardPadSpacing = 8.0f;
 {
     NSMutableDictionary *buttonDictionary = [NSMutableDictionary dictionary];
 
-    const NSInteger numberMin = MMNumberKeyboardButtonNumberMin;
-    const NSInteger numberMax = MMNumberKeyboardButtonNumberMax;
+    const NSInteger numberMin = MMPhoneNumberKeyboardButtonNumberMin;
+    const NSInteger numberMax = MMPhoneNumberKeyboardButtonNumberMax;
 
     UIFont *buttonFont;
     if ([UIFont respondsToSelector:@selector(systemFontOfSize:weight:)])
@@ -126,7 +126,7 @@ static const CGFloat MMNumberKeyboardPadSpacing = 8.0f;
 
     for (MMPhoneNumberKeyboardButton key = numberMin; key < numberMax; key++)
     {
-        UIButton *button = [_MMNumberKeyboardButton keyboardButtonWithStyle:MMNumberKeyboardButtonStyleWhite];
+        UIButton *button = [_MMPhoneNumberKeyboardButton keyboardButtonWithStyle:MMPhoneNumberKeyboardButtonStyleWhite];
         NSString *title = @(key - numberMin).stringValue;
 
         [button setTitle:title forState:UIControlStateNormal];
@@ -138,34 +138,34 @@ static const CGFloat MMNumberKeyboardPadSpacing = 8.0f;
     UIImage *backspaceImage = [self.class _keyboardImageNamed:@"MMNumberKeyboardDeleteKey.png"];
     UIImage *dismissImage = [self.class _keyboardImageNamed:@"MMNumberKeyboardDismissKey.png"];
 
-    UIButton *backspaceButton = [_MMNumberKeyboardButton keyboardButtonWithStyle:MMNumberKeyboardButtonStyleGray];
+    UIButton *backspaceButton = [_MMPhoneNumberKeyboardButton keyboardButtonWithStyle:MMPhoneNumberKeyboardButtonStyleGray];
     [backspaceButton setImage:[backspaceImage imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate] forState:UIControlStateNormal];
 
-    [(_MMNumberKeyboardButton *) backspaceButton addTarget:self action:@selector(_backspaceRepeat:) forContinuousPressWithTimeInterval:0.15f];
+    [(_MMPhoneNumberKeyboardButton *) backspaceButton addTarget:self action:@selector(_backspaceRepeat:) forContinuousPressWithTimeInterval:0.15f];
 
-    buttonDictionary[@(MMNumberKeyboardButtonBackspace)] = backspaceButton;
+    buttonDictionary[@(MMPhoneNumberKeyboardButtonBackspace)] = backspaceButton;
 
-    UIButton *specialButton = [_MMNumberKeyboardButton keyboardButtonWithStyle:MMNumberKeyboardButtonStyleGray];
+    UIButton *specialButton = [_MMPhoneNumberKeyboardButton keyboardButtonWithStyle:MMPhoneNumberKeyboardButtonStyleGray];
 
-    buttonDictionary[@(MMNumberKeyboardButtonSpecial)] = specialButton;
+    buttonDictionary[@(MMPhoneNumberKeyboardButtonSpecial)] = specialButton;
 
-    UIButton *doneButton = [_MMNumberKeyboardButton keyboardButtonWithStyle:MMNumberKeyboardButtonStyleDone];
+    UIButton *doneButton = [_MMPhoneNumberKeyboardButton keyboardButtonWithStyle:MMPhoneNumberKeyboardButtonStyleDone];
     [doneButton.titleLabel setFont:doneButtonFont];
     [doneButton setTitle:UIKitLocalizedString(@"Done") forState:UIControlStateNormal];
 
-    buttonDictionary[@(MMNumberKeyboardButtonDone)] = doneButton;
+    buttonDictionary[@(MMPhoneNumberKeyboardButtonDone)] = doneButton;
 
-    UIButton *plusButton = [_MMNumberKeyboardButton keyboardButtonWithStyle:MMNumberKeyboardButtonStyleWhite];
+    UIButton *plusButton = [_MMPhoneNumberKeyboardButton keyboardButtonWithStyle:MMPhoneNumberKeyboardButtonStyleWhite];
 
     [plusButton setTitle:@"+" forState:UIControlStateNormal];
 
-    buttonDictionary[@(MMNumberKeyboardButtonPlus)] = plusButton;
+    buttonDictionary[@(MMPhoneNumberKeyboardButtonPlus)] = plusButton;
 
-    UIButton *spaceButton = [_MMNumberKeyboardButton keyboardButtonWithStyle:MMNumberKeyboardButtonStyleWhite];
+    UIButton *spaceButton = [_MMPhoneNumberKeyboardButton keyboardButtonWithStyle:MMPhoneNumberKeyboardButtonStyleWhite];
 
     [spaceButton setTitle:@" " forState:UIControlStateNormal];
 
-    buttonDictionary[@(MMNumberKeyboardButtonSpace)] = spaceButton;
+    buttonDictionary[@(MMPhoneNumberKeyboardButtonSpace)] = spaceButton;
 
     for (UIButton *button in buttonDictionary.objectEnumerator)
     {
@@ -191,7 +191,7 @@ static const CGFloat MMNumberKeyboardPadSpacing = 8.0f;
     [self setReturnKeyTitle:[self defaultReturnKeyTitle]];
 
     // Add default return key style.
-    [self setReturnKeyButtonStyle:MMNumberKeyboardButtonStyleDone];
+    [self setReturnKeyButtonStyle:MMPhoneNumberKeyboardButtonStyleDone];
 
     // Size to fit.
     [self sizeToFit];
@@ -233,11 +233,11 @@ static const CGFloat MMNumberKeyboardPadSpacing = 8.0f;
 
 - (void)_buttonInput:(UIButton *)button
 {
-    __block MMPhoneNumberKeyboardButton keyboardButton = MMNumberKeyboardButtonNone;
+    __block MMPhoneNumberKeyboardButton keyboardButton = MMPhoneNumberKeyboardButtonNone;
 
     [self.buttonDictionary enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop)
     {
-        MMPhoneNumberKeyboardButton k = [key unsignedIntegerValue];
+        MMPhoneNumberKeyboardButton k = (MMPhoneNumberKeyboardButton) [key unsignedIntegerValue];
         if (button == obj)
         {
             keyboardButton = k;
@@ -245,7 +245,7 @@ static const CGFloat MMNumberKeyboardPadSpacing = 8.0f;
         }
     }];
 
-    if (keyboardButton == MMNumberKeyboardButtonNone)
+    if (keyboardButton == MMPhoneNumberKeyboardButtonNone)
     {
         return;
     }
@@ -260,8 +260,8 @@ static const CGFloat MMNumberKeyboardPadSpacing = 8.0f;
     }
 
     // Handle number.
-    const NSInteger numberMin = MMNumberKeyboardButtonNumberMin;
-    const NSInteger numberMax = MMNumberKeyboardButtonNumberMax;
+    const NSInteger numberMin = MMPhoneNumberKeyboardButtonNumberMin;
+    const NSInteger numberMax = MMPhoneNumberKeyboardButtonNumberMax;
 
     if (keyboardButton >= numberMin && keyboardButton < numberMax)
     {
@@ -281,7 +281,7 @@ static const CGFloat MMNumberKeyboardPadSpacing = 8.0f;
     }
 
         // Handle backspace.
-    else if (keyboardButton == MMNumberKeyboardButtonBackspace)
+    else if (keyboardButton == MMPhoneNumberKeyboardButtonBackspace)
     {
         BOOL shouldDeleteBackward = YES;
 
@@ -297,7 +297,7 @@ static const CGFloat MMNumberKeyboardPadSpacing = 8.0f;
     }
 
         // Handle done.
-    else if (keyboardButton == MMNumberKeyboardButtonDone)
+    else if (keyboardButton == MMPhoneNumberKeyboardButtonDone)
     {
         BOOL shouldReturn = YES;
 
@@ -313,7 +313,7 @@ static const CGFloat MMNumberKeyboardPadSpacing = 8.0f;
     }
 
         // Handle special key.
-    else if (keyboardButton == MMNumberKeyboardButtonSpecial)
+    else if (keyboardButton == MMPhoneNumberKeyboardButtonSpecial)
     {
         dispatch_block_t handler = self.specialKeyHandler;
         if (handler)
@@ -323,8 +323,8 @@ static const CGFloat MMNumberKeyboardPadSpacing = 8.0f;
     }
 
         // Handle + and space
-    else if (keyboardButton == MMNumberKeyboardButtonPlus
-            || keyboardButton == MMNumberKeyboardButtonSpace)
+    else if (keyboardButton == MMPhoneNumberKeyboardButtonPlus
+            || keyboardButton == MMPhoneNumberKeyboardButtonSpace)
     {
         NSString *decimalText = [button titleForState:UIControlStateNormal];
         if ([delegate respondsToSelector:@selector(numberKeyboard:shouldInsertText:)])
@@ -397,7 +397,7 @@ static const CGFloat MMNumberKeyboardPadSpacing = 8.0f;
         self.specialKeyHandler = NULL;
     }
 
-    UIButton *button = self.buttonDictionary[@(MMNumberKeyboardButtonSpecial)];
+    UIButton *button = self.buttonDictionary[@(MMPhoneNumberKeyboardButtonSpecial)];
     [button setImage:image forState:UIControlStateNormal];
 }
 
@@ -429,7 +429,7 @@ static const CGFloat MMNumberKeyboardPadSpacing = 8.0f;
 {
     if (![title isEqualToString:self.returnKeyTitle])
     {
-        UIButton *button = self.buttonDictionary[@(MMNumberKeyboardButtonDone)];
+        UIButton *button = self.buttonDictionary[@(MMPhoneNumberKeyboardButtonDone)];
         if (button)
         {
             NSString *returnKeyTitle = (title != nil && title.length > 0) ? title : [self defaultReturnKeyTitle];
@@ -440,7 +440,7 @@ static const CGFloat MMNumberKeyboardPadSpacing = 8.0f;
 
 - (NSString *)returnKeyTitle
 {
-    UIButton *button = self.buttonDictionary[@(MMNumberKeyboardButtonDone)];
+    UIButton *button = self.buttonDictionary[@(MMPhoneNumberKeyboardButtonDone)];
     if (button)
     {
         NSString *title = [button titleForState:UIControlStateNormal];
@@ -463,7 +463,7 @@ static const CGFloat MMNumberKeyboardPadSpacing = 8.0f;
     {
         _returnKeyButtonStyle = style;
 
-        _MMNumberKeyboardButton *button = self.buttonDictionary[@(MMNumberKeyboardButtonDone)];
+        _MMPhoneNumberKeyboardButton *button = self.buttonDictionary[@(MMPhoneNumberKeyboardButtonDone)];
         if (button)
         {
             button.style = style;
@@ -479,7 +479,7 @@ NS_INLINE CGRect MMButtonRectMake(CGRect rect, CGRect contentRect, UIUserInterfa
 
     if (interfaceIdiom == UIUserInterfaceIdiomPad)
     {
-        CGFloat inset = MMNumberKeyboardPadSpacing / 2.0f;
+        CGFloat inset = MMPhoneNumberKeyboardPadSpacing / 2.0f;
         rect = CGRectInset(rect, inset, inset);
     }
 
@@ -504,7 +504,7 @@ NS_INLINE CGRect MMButtonRectMake(CGRect rect, CGRect contentRect, UIUserInterfa
 
     // Settings.
     const UIUserInterfaceIdiom interfaceIdiom = UI_USER_INTERFACE_IDIOM();
-    const CGFloat spacing = (interfaceIdiom == UIUserInterfaceIdiomPad) ? MMNumberKeyboardPadBorder : 0.0f;
+    const CGFloat spacing = (interfaceIdiom == UIUserInterfaceIdiomPad) ? MMPhoneNumberKeyboardPadBorder : 0.0f;
     const CGFloat maximumWidth = (interfaceIdiom == UIUserInterfaceIdiomPad) ? 400.0f : CGRectGetWidth(bounds);
 
     const CGFloat width = MIN(maximumWidth, CGRectGetWidth(bounds));
@@ -517,13 +517,13 @@ NS_INLINE CGRect MMButtonRectMake(CGRect rect, CGRect contentRect, UIUserInterfa
 
     // Layout.
     const CGFloat columnWidth = CGRectGetWidth(contentRect) / 4.0f;
-    const CGFloat rowHeight = MMNumberKeyboardRowHeight;
+    const CGFloat rowHeight = MMPhoneNumberKeyboardRowHeight;
 
     CGSize numberSize = CGSizeMake(columnWidth, rowHeight);
 
     // Layout numbers.
-    const NSInteger numberMin = MMNumberKeyboardButtonNumberMin;
-    const NSInteger numberMax = MMNumberKeyboardButtonNumberMax;
+    const NSInteger numberMin = MMPhoneNumberKeyboardButtonNumberMin;
+    const NSInteger numberMax = MMPhoneNumberKeyboardButtonNumberMax;
 
     const NSInteger numbersPerLine = 3;
 
@@ -555,7 +555,7 @@ NS_INLINE CGRect MMButtonRectMake(CGRect rect, CGRect contentRect, UIUserInterfa
     }
 
 //    // Layout special key.
-//    UIButton *specialKey = buttonDictionary[@(MMNumberKeyboardButtonSpecial)];
+//    UIButton *specialKey = buttonDictionary[@(MMPhoneNumberKeyboardButtonSpecial)];
 //    if (specialKey)
 //    {
 //        CGRect rect = (CGRect) {.size = numberSize};
@@ -566,7 +566,7 @@ NS_INLINE CGRect MMButtonRectMake(CGRect rect, CGRect contentRect, UIUserInterfa
 //    }
 
     // Layout decimal point.
-    UIButton *plusKey = buttonDictionary[@(MMNumberKeyboardButtonPlus)];
+    UIButton *plusKey = buttonDictionary[@(MMPhoneNumberKeyboardButtonPlus)];
     if (plusKey)
     {
         CGRect rect = (CGRect) {.size = numberSize};
@@ -576,7 +576,7 @@ NS_INLINE CGRect MMButtonRectMake(CGRect rect, CGRect contentRect, UIUserInterfa
     }
 
     // Layout decimal point.
-    UIButton *spaceKey = buttonDictionary[@(MMNumberKeyboardButtonSpace)];
+    UIButton *spaceKey = buttonDictionary[@(MMPhoneNumberKeyboardButtonSpace)];
     if (spaceKey)
     {
         CGRect rect = (CGRect) {.size = numberSize};
@@ -588,9 +588,9 @@ NS_INLINE CGRect MMButtonRectMake(CGRect rect, CGRect contentRect, UIUserInterfa
     }
 
     // Layout utility column.
-    const int utilityButtonKeys[3] = {MMNumberKeyboardButtonBackspace,
-                                      MMNumberKeyboardButtonDone,
-                                      MMNumberKeyboardButtonSpecial};
+    const int utilityButtonKeys[3] = {MMPhoneNumberKeyboardButtonBackspace,
+                                      MMPhoneNumberKeyboardButtonDone,
+                                      MMPhoneNumberKeyboardButtonSpecial};
     const CGSize utilitySize[3] = {CGSizeMake(columnWidth, rowHeight * 1.0f),
                                    CGSizeMake(columnWidth, rowHeight * 2.0f),
                                    CGSizeMake(columnWidth, rowHeight * 1.0f)
@@ -684,9 +684,9 @@ NS_INLINE CGRect MMButtonRectMake(CGRect rect, CGRect contentRect, UIUserInterfa
 - (CGSize)sizeThatFits:(CGSize)size
 {
     const UIUserInterfaceIdiom interfaceIdiom = UI_USER_INTERFACE_IDIOM();
-    const CGFloat spacing = (interfaceIdiom == UIUserInterfaceIdiomPad) ? MMNumberKeyboardPadBorder : 0.0f;
+    const CGFloat spacing = (interfaceIdiom == UIUserInterfaceIdiomPad) ? MMPhoneNumberKeyboardPadBorder : 0.0f;
 
-    size.height = MMNumberKeyboardRowHeight * MMNumberKeyboardRows + (spacing * 2.0f);
+    size.height = MMPhoneNumberKeyboardRowHeight * MMPhoneNumberKeyboardRows + (spacing * 2.0f);
 
     if (size.width == 0.0f)
     {
@@ -729,7 +729,7 @@ NS_INLINE CGRect MMButtonRectMake(CGRect rect, CGRect contentRect, UIUserInterfa
 
 @end
 
-@interface _MMNumberKeyboardButton ()
+@interface _MMPhoneNumberKeyboardButton ()
 
 @property(strong, nonatomic) NSTimer *continuousPressTimer;
 @property(assign, nonatomic) NSTimeInterval continuousPressTimeInterval;
@@ -742,11 +742,11 @@ NS_INLINE CGRect MMButtonRectMake(CGRect rect, CGRect contentRect, UIUserInterfa
 
 @end
 
-@implementation _MMNumberKeyboardButton
+@implementation _MMPhoneNumberKeyboardButton
 
-+ (_MMNumberKeyboardButton *)keyboardButtonWithStyle:(MMPhoneNumberKeyboardButtonStyle)style
++ (_MMPhoneNumberKeyboardButton *)keyboardButtonWithStyle:(MMPhoneNumberKeyboardButtonStyle)style
 {
-    _MMNumberKeyboardButton *button = [self buttonWithType:UIButtonTypeCustom];
+    _MMPhoneNumberKeyboardButton *button = [self buttonWithType:UIButtonTypeCustom];
     button.style = style;
 
     return button;
@@ -779,12 +779,12 @@ NS_INLINE CGRect MMButtonRectMake(CGRect rect, CGRect contentRect, UIUserInterfa
 
     UIColor *fillColor = nil;
     UIColor *highlightedFillColor = nil;
-    if (style == MMNumberKeyboardButtonStyleWhite)
+    if (style == MMPhoneNumberKeyboardButtonStyleWhite)
     {
         fillColor = [UIColor whiteColor];
         highlightedFillColor = [UIColor colorWithRed:0.82f green:0.837f blue:0.863f alpha:1];
     }
-    else if (style == MMNumberKeyboardButtonStyleGray)
+    else if (style == MMPhoneNumberKeyboardButtonStyleGray)
     {
         if (interfaceIdiom == UIUserInterfaceIdiomPad)
         {
@@ -796,7 +796,7 @@ NS_INLINE CGRect MMButtonRectMake(CGRect rect, CGRect contentRect, UIUserInterfa
         }
         highlightedFillColor = [UIColor whiteColor];
     }
-    else if (style == MMNumberKeyboardButtonStyleDone)
+    else if (style == MMPhoneNumberKeyboardButtonStyleDone)
     {
         fillColor = [UIColor colorWithRed:0 green:0.479f blue:1 alpha:1];
         highlightedFillColor = [UIColor whiteColor];
@@ -804,7 +804,7 @@ NS_INLINE CGRect MMButtonRectMake(CGRect rect, CGRect contentRect, UIUserInterfa
 
     UIColor *controlColor = nil;
     UIColor *highlightedControlColor = nil;
-    if (style == MMNumberKeyboardButtonStyleDone)
+    if (style == MMPhoneNumberKeyboardButtonStyleDone)
     {
         controlColor = [UIColor whiteColor];
         highlightedControlColor = [UIColor blackColor];

@@ -53,17 +53,17 @@ typedef NS_ENUM(NSUInteger, MMPhoneNumberKeyboardButtonStyle) {
     /**
      *  A white style button, such as those for the number keys.
      */
-    MMNumberKeyboardButtonStyleWhite,
+    MMPhoneNumberKeyboardButtonStyleWhite,
     
     /**
      *  A gray style button, such as the backspace key.
      */
-    MMNumberKeyboardButtonStyleGray,
+    MMPhoneNumberKeyboardButtonStyleGray,
     
     /**
      *  A done style button, for example, a button that completes some task and returns to the previous view.
      */
-    MMNumberKeyboardButtonStyleDone
+    MMPhoneNumberKeyboardButtonStyleDone
 };
 
 /**
